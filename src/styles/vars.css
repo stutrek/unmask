@@ -3,3 +3,7 @@
 	--header-font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 	--body-font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 }
+
+* {
+	box-sizing: border-box;
+}
