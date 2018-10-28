@@ -113,7 +113,7 @@ var config = {
                         modules: true,
                         camelCase: true,
                         importLoaders: 1,
-                        localIdentName: '[name]_[local]'
+                        localIdentName: IS_DEV ? '[name]_[local]' : '[hash:5]'
                     }
                 },              {
                     loader: 'postcss-loader',
