@@ -12,12 +12,18 @@ import styles from './home.css';
 class HomePage extends React.Component {
 	render () {
 		return <div className={styles.container}>
-			<div>
-				Upload an image to remove the background.<br />
+			<div className={styles.form}>
 				<UploadButton receiveImage={this.props.imageActions.uploadImage} />
 			</div>
 			<div className={styles.images}>
-				{this.props.images.map(image => <ModifiedImage key={image.id} image={image} />)}
+				{this.props.images.length === 0 ? <div className={styles.empty}>
+					Click the box above or drag an image onto it to remove the background.
+				</div> : null}
+				{this.props.images.map(image => <ModifiedImage
+					key={image.id}
+					image={image}
+					imageActions={this.props.imageActions}
+				/>)}
 			</div>
 		</div>;
 	}

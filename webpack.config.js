@@ -3,7 +3,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ForceCaseSensitivityPlugin = require('case-sensitive-paths-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var appConfig = require('./appConfig');
 
 var IS_DEV;
 if (typeof process.env.IS_DEV !== 'undefined') {
@@ -32,19 +31,16 @@ var plugins = [
     new HtmlWebpackPlugin({
         template: __dirname + '/src/index.html',
         filename: 'index-prod.html',
-        appConfig: appConfig.prod,
         chunks: ['app']
     }),
     new HtmlWebpackPlugin({
         template: __dirname + '/src/index.html',
         filename: 'index-dev.html',
-        appConfig: appConfig.dev,
         chunks: ['app']
     }),
     new HtmlWebpackPlugin({
         template: __dirname + '/sandbox/index.html',
         filename: 'sandbox.html',
-        appConfig: appConfig.dev,
         chunks: ['sandbox']
     }),
 

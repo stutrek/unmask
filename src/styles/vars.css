@@ -1,4 +1,5 @@
 :global :root {
 	--text-color: black;
 	--header-font-family: 'Helvetica', 'Arial', 'Sans-Serif';
+	--body-font-family: 'Helvetica', 'Arial', 'Sans-Serif';
 }

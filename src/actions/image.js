@@ -3,9 +3,10 @@ import exif from 'exif-js';
 import tinycolor from 'tinycolor2';
 
 export const UPLOAD_IMAGE = 'UPLOAD_IMAGE';
+export const CHANGE_COLOR = 'CHANGE_COLOR';
 
 export interface Upload {
-	data: Uint8ClampedArray,
+	imageData: ImageData,
 	ppi: number,
 	width: number,
 	height: number,
@@ -33,7 +34,8 @@ export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function)
 		//ctx.filter = 'grayscale(100%)';
 		ctx.drawImage(img, 0, 0);
 
-		const { data } = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+		const imageData = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+		const { data } = imageData;
 		const extremes = {
 			lightest: tinycolor({r: data[0], g: data[1], b: data[2]}),
 			darkest: tinycolor({r: data[0], g: data[1], b: data[2]})
@@ -53,7 +55,7 @@ export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function)
 			dispatch({
 				type: UPLOAD_IMAGE,
 				payload: {
-					data: data,
+					imageData,
 					ppi: exifData.XResolution || 72,
 					name: file.name.replace(/\.\w+$/, ''),
 					width: img.naturalWidth,
@@ -66,3 +68,11 @@ export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function)
 	};
 	img.src = dataUrl;
 };
+
+export const changeColor = (id, color) => ({
+	type: CHANGE_COLOR,
+	payload: {
+		id,
+		color
+	}
+});

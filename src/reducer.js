@@ -5,6 +5,5 @@ import images from './reducers/images';
 
 export default combineReducers({
     routing: routerReducer,
-    appConfig: () => window.appConfig,
     images
 });

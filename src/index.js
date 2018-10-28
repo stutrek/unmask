@@ -10,7 +10,6 @@ import routes from './routes';
 import './styles/vars.css';
 
 const container = document.getElementById('app-container');
-
 ReactDOM.render((
     <Provider store={store}>
         <InternalLinkRouter>
