@@ -1,0 +1,8 @@
+{
+	"dev": {
+		"trackingId": "dev"
+	},
+	"prod": {
+		"trackingId": "prod"
+	}
+}

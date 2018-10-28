@@ -1,0 +1,21 @@
+.layout {
+}
+
+.header {
+	height: 36px;
+	font-family: var(--header-font-family);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: 10px;
+}
+
+.content {
+	margin-top: 36px;
+	position: relative;
+}
+
+.footer {
+
+}

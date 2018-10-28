@@ -1,0 +1,11 @@
+.icon {
+	display: inline-block;
+}
+.icon svg * {
+	fill: currentColor;
+}
+
+.icon-no-fill {
+	display: inline-block;
+	fill: none !important;
+}

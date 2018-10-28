@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Boilerplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        window.appConfig = <%= JSON.stringify(htmlWebpackPlugin.options.appConfig) %>
+    </script>
+</head>
+
+<body>
+
+<div id="app-container">
+    <div class="spinner" style="display: block;">Loading...</div>
+</div>
+
+</body>
+
+</html>
