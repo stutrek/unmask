@@ -1,0 +1,40 @@
+
+.form {
+	height: 100px;
+	font-size: 50px;
+	line-height: 80px;
+	text-align: center;
+	position: relative;
+
+	input {
+		display: none;
+	}
+	label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		background-color: #eee;
+		border: 5px solid #ccc;
+		color: #ccc;
+
+		&:after {
+			content: '+ upload logo / icon';
+		}
+	}
+}
+
+.images {
+	img {
+		max-width: 100%;
+	}
+}
+
+.empty {
+	text-align: center;
+	padding: 80px;
+	color: #aaa;
+	font-size: 30px;
+}
