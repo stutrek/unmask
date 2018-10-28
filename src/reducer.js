@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 
-import image from './reducers/image';
+import images from './reducers/images';
 
 export default combineReducers({
     routing: routerReducer,
     appConfig: () => window.appConfig,
-    image
+    images
 });

@@ -7,16 +7,19 @@ import * as imageActions from '../../actions/image';
 import UploadButton from '../../Components/UploadButton';
 import ModifiedImage from './Components/ModifiedImage';
 
+import styles from './home.css';
+
 class HomePage extends React.Component {
 	render () {
-		if (this.props.image.upload) {
-			return <ModifiedImage image={this.props.image} />;
-		} else {
-			return <div>
+		return <div className={styles.container}>
+			<div>
 				Upload an image to remove the background.<br />
 				<UploadButton receiveImage={this.props.imageActions.uploadImage} />
-			</div>;
-		}
+			</div>
+			<div className={styles.images}>
+				{this.props.images.map(image => <ModifiedImage key={image.id} image={image} />)}
+			</div>
+		</div>;
 	}
 }
 

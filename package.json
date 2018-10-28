@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "exif-js": "^2.3.0",
-    "tinycolor2": "^1.4.1"
+    "tinycolor2": "^1.4.1",
+    "uuid": "^3.3.2"
   }
 }

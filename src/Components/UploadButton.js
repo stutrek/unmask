@@ -16,12 +16,14 @@ export default class ImageUploader extends React.Component<Props> {
 	receiveImage = (event: SyntheticEvent<HTMLInputElement>) => {
 		const { files } = event.currentTarget;
 		if (files[0]) {
+			let file = files[0];
 			let fileReader = new FileReader();
 			fileReader.onload = (e) => {
-				this.props.receiveImage(files[0], e.target.result);
+				this.props.receiveImage(file, e.target.result);
 			};
-			fileReader.readAsDataURL(files[0]);
+			fileReader.readAsDataURL(file);
 		}
+		event.currentTarget.value = '';
 	}
 
 	render () {

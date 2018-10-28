@@ -10,14 +10,16 @@ export interface Upload {
 	width: number,
 	height: number,
 	name: string,
-	lightest: tinycolor,
-	darkest: tinycolor
+	lightest: string,
+	darkest: string,
 }
 
 export interface ImageState {
-	upload: Upload | null,
+	id: string,
+	upload: Upload,
 	brightness: number,
-	color: string
+	color: string,
+	uploadDate: Date
 }
 
 export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function) => {
@@ -33,15 +35,15 @@ export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function)
 
 		const { data } = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
 		const extremes = {
-			lightest: null,
-			darkest: null
+			lightest: tinycolor({r: data[0], g: data[1], b: data[2]}),
+			darkest: tinycolor({r: data[0], g: data[1], b: data[2]})
 		};
-		for (let i=0; i < data.length; i += 4) {
+		for (let i=4; i < data.length; i += 4) {
 			const color = tinycolor({r: data[i], g: data[i+1], b: data[i+2]});
-			if (extremes.lightest === null || color.getBrightness() > extremes.lightest.getBrightness()) {
+			if (color.getBrightness() > extremes.lightest.getBrightness()) {
 				extremes.lightest = color;
 			}
-			if (extremes.darkest === null || color.getBrightness() < extremes.darkest.getBrightness()) {
+			if (color.getBrightness() < extremes.darkest.getBrightness()) {
 				extremes.darkest = color;
 			}
 		}
@@ -56,7 +58,8 @@ export const uploadImage = (file: File, dataUrl: string) => (dispatch: Function)
 					name: file.name.replace(/\.\w+$/, ''),
 					width: img.naturalWidth,
 					height: img.naturalHeight,
-					...extremes
+					lightest: '#' + extremes.lightest.toHex(),
+					darkest: '#' + extremes.darkest.toHex()
 				}
 			});
 		});

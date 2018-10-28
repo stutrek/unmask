@@ -3,13 +3,19 @@ import React from 'react';
 
 import tinycolor from 'tinycolor2';
 
+import { ImageState } from '../../../actions/image';
+
 interface State {
 	dataUrl: ?string
 }
 
-export default class ModifiedImage extends React.Component<any, State> {
+interface Props {
+	image: ImageState
+}
 
-	constructor (props) {
+export default class ModifiedImage extends React.Component<Props, State> {
+
+	constructor (props: Props) {
 		super(props);
 
 		this.state = {
@@ -17,7 +23,7 @@ export default class ModifiedImage extends React.Component<any, State> {
 		};
 	}
 
-	shouldComponentUpdate (nextProps) {
+	shouldComponentUpdate (nextProps: Props) {
 		return nextProps.image !== this.props.image;
 	}
 
@@ -32,17 +38,18 @@ export default class ModifiedImage extends React.Component<any, State> {
 
 		let { image } = this.props;
 		let { upload } = image;
+
 		canvas.width = upload.width;
 		canvas.height = upload.height;
 
 		let ctx = canvas.getContext('2d');
-		ctx.fillStyle = '#' + upload.darkest.toHex();
+		ctx.fillStyle = image.color;
 		ctx.fillRect(0, 0, upload.width, upload.height);
 
 		const imageData = ctx.getImageData(0, 0, upload.width, upload.height);
 
-		const lightest = upload.lightest.getBrightness();
-		const darkest = upload.darkest.getBrightness();
+		const lightest = tinycolor(upload.lightest).getBrightness();
+		const darkest = tinycolor(upload.darkest).getBrightness();
 		const colorRange = lightest - darkest;
 		const multiplier = 255 / colorRange;
 		const adjustColor = value => (value - darkest) * multiplier;
